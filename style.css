@@ -1,0 +1,44 @@
+/* =========================================================
+   Base / Reset
+   ========================================================= */
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: 'Noto Sans Myanmar', 'Pyidaungsu', 'Myanmar Text',
+               system-ui, -apple-system, sans-serif;
+}
+
+/* =========================================================
+   Animations
+   ========================================================= */
+.fade-in {
+  animation: fade 0.22s ease;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* =========================================================
+   Filter Bar – scrollbar လေးကို ဖျောက်ထား
+   ========================================================= */
+#filterBar::-webkit-scrollbar {
+  height: 0;
+}
+
+/* =========================================================
+   (Optional) Chart canvas sizing – Chart.js က ကိုယ်တိုင် handle လုပ်ပေမယ့်
+   height ကို parent က ထိန်းထားတာကြောင့် ဒီမှာ ထပ်မထည့်တော့ပါ
+   ========================================================= */
+canvas {
+  display: block;
+}
