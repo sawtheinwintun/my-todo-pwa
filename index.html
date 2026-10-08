@@ -1,91 +1,91 @@
 <!DOCTYPE html>
 <html lang="my" class="h-full">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#4f46e5" />
-    <meta name="description" content="To-Do list with status tracking & monthly charts" />
-    <title>To-Do List</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#4f46e5" />
+  <meta name="description" content="To-Do list with status tracking & monthly charts" />
+  <title>To-Do List</title>
 
-    <!-- Manifest ကို JS က dynamic ဆောက်ပေးမယ် -->
-    <link rel="manifest" id="manifestLink" />
-    <link rel="apple-touch-icon" id="appleIcon" />
+  <!-- Manifest ကို JS က dynamic ဆောက်ပေးမယ် -->
+  <link rel="manifest" id="manifestLink" />
+  <link rel="apple-touch-icon" id="appleIcon" />
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-    <!-- မြန်မာ font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <!-- မြန်မာ font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body class="min-h-full bg-slate-100 text-slate-800">
 
 <div class="max-w-3xl mx-auto px-4 py-6 pb-24">
 
-    <!-- ================= HEADER ================= -->
-    <header class="flex flex-wrap items-center justify-between gap-3 mb-5">
-        <div>
-            <h1 class="text-2xl font-bold text-slate-900">To-Do List</h1>
-            <p class="text-sm text-slate-500" id="todayLabel"></p>
-        </div>
-        <input type="month" id="monthPicker"
-               class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm
+  <!-- ================= HEADER ================= -->
+  <header class="flex flex-wrap items-center justify-between gap-3 mb-5">
+    <div>
+      <h1 class="text-2xl font-bold text-slate-900">To-Do List</h1>
+      <p class="text-sm text-slate-500" id="todayLabel"></p>
+    </div>
+    <input type="month" id="monthPicker"
+           class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm
              focus:outline-none focus:ring-2 focus:ring-indigo-500" />
-    </header>
+  </header>
 
-    <!-- ================= ADD FORM ================= -->
-    <form id="taskForm" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 mb-6">
-        <div class="flex flex-col sm:flex-row gap-3">
-            <input id="taskInput" type="text" autocomplete="off" required
-                   placeholder="နေဇာရဲ့ task တွေကို ရေးမှတ်ပါ..."
-                   class="flex-1 rounded-xl border border-slate-300 px-4 py-3 text-base
+  <!-- ================= ADD FORM ================= -->
+  <form id="taskForm" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 mb-6">
+    <div class="flex flex-col sm:flex-row gap-3">
+      <input id="taskInput" type="text" autocomplete="off" required
+             placeholder="နေဇာရဲ့ task တွေကို ရေးမှတ်ပါ..."
+             class="flex-1 rounded-xl border border-slate-300 px-4 py-3 text-base
                focus:outline-none focus:ring-2 focus:ring-indigo-500" />
-            <select id="statusSelect"
-                    class="rounded-xl border border-slate-300 px-4 py-3 text-base bg-white
+      <select id="statusSelect"
+              class="rounded-xl border border-slate-300 px-4 py-3 text-base bg-white
                focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                <option value="new">New</option>
-                <option value="pending">Pending</option>
-                <option value="complete">Complete</option>
-                <option value="cancel">Cancel</option>
-            </select>
-            <button type="submit"
-                    class="rounded-xl bg-indigo-600 px-6 py-3 text-white font-medium
+        <option value="new">New</option>
+        <option value="pending">Pending</option>
+        <option value="complete">Complete</option>
+        <option value="cancel">Cancel</option>
+      </select>
+      <button type="submit"
+              class="rounded-xl bg-indigo-600 px-6 py-3 text-white font-medium
                hover:bg-indigo-700 active:scale-95 transition">မှတ်သားပါ</button>
-        </div>
-    </form>
+    </div>
+  </form>
 
-    <!-- ================= MONTHLY STATS ================= -->
-    <section class="mb-6">
-        <div class="flex items-center justify-between mb-3">
-            <h2 class="text-sm font-semibold text-slate-600">လက်ရှိ အခြေအနေ</h2>
-            <span id="monthSummary" class="text-xs text-slate-400"></span>
-        </div>
-        <div id="statsGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
-    </section>
+  <!-- ================= MONTHLY STATS ================= -->
+  <section class="mb-6">
+    <div class="flex items-center justify-between mb-3">
+      <h2 class="text-sm font-semibold text-slate-600">လက်ရှိ အခြေအနေ</h2>
+      <span id="monthSummary" class="text-xs text-slate-400"></span>
+    </div>
+    <div id="statsGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
+  </section>
 
-    <!-- ================= CHARTS ================= -->
-    <section class="grid gap-4 md:grid-cols-2 mb-6">
-        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-4">
-            <h2 class="text-sm font-semibold text-slate-600 mb-3">ဒီလ အခြေအနေ</h2>
-            <div class="h-56"><canvas id="donutChart"></canvas></div>
-        </div>
-        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-4">
-            <h2 class="text-sm font-semibold text-slate-600 mb-3">၆ လအတွင်း ဆန်းစစ်ချက်</h2>
-            <div class="h-56"><canvas id="trendChart"></canvas></div>
-        </div>
-    </section>
+  <!-- ================= CHARTS ================= -->
+  <section class="grid gap-4 md:grid-cols-2 mb-6">
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-4">
+      <h2 class="text-sm font-semibold text-slate-600 mb-3">ဒီလ အခြေအနေ</h2>
+      <div class="h-56"><canvas id="donutChart"></canvas></div>
+    </div>
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-4">
+      <h2 class="text-sm font-semibold text-slate-600 mb-3">၆ လအတွင်း ဆန်းစစ်ချက်</h2>
+      <div class="h-56"><canvas id="trendChart"></canvas></div>
+    </div>
+  </section>
 
-    <!-- ================= FILTERS ================= -->
-    <div class="flex gap-2 overflow-x-auto pb-1 mb-3" id="filterBar"></div>
+  <!-- ================= FILTERS ================= -->
+  <div class="flex gap-2 overflow-x-auto pb-1 mb-3" id="filterBar"></div>
 
-    <!-- ================= TASK LIST ================= -->
-    <ul id="taskList" class="space-y-3"></ul>
+  <!-- ================= TASK LIST ================= -->
+  <ul id="taskList" class="space-y-3"></ul>
 </div>
 
 <!-- App JavaScript -->
